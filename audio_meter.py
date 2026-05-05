@@ -161,6 +161,11 @@ def level_to_log_record(level: AudioLevel) -> dict[str, float | int | str]:
     }
 
 
+def write_log_record(log, level: AudioLevel) -> None:
+    log.write(json.dumps(level_to_log_record(level)) + "\n")
+    log.flush()
+
+
 def trim_log_file(log_file: Path, retention_days: float) -> None:
     if retention_days <= 0 or not log_file.exists():
         return
@@ -235,7 +240,7 @@ def stream_levels(args: argparse.Namespace) -> int:
                 if level is None:
                     continue
 
-                log.write(json.dumps(level_to_log_record(level)) + "\n")
+                write_log_record(log, level)
 
                 if args.json:
                     print(json.dumps(level.__dict__), flush=True)
