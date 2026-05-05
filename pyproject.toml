@@ -1,0 +1,9 @@
+[project]
+name = "livestream-audio-meter"
+version = "0.1.0"
+description = "Realtime dBFS audio meter for an RTSP/RTSPS livestream"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pyright]
+pythonVersion = "3.10"
