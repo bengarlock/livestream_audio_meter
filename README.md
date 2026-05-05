@@ -82,4 +82,26 @@ For machine-readable output:
 python .\audio_meter.py "rtsps://192.168.1.1:7441/ufgIVAE3C4ZeCNQy?enableSrtp" --json
 ```
 
+## Log File
+
+The script writes one JSON record per second to:
+
+```text
+C:\Users\benga\PycharmProjects\livestream_audio_meter\audio_levels.log
+```
+
+The log file is automatically trimmed on startup to retain only the most recent 7 days of data. The `.gitignore` file excludes `*.log`, so generated logs will not be committed to git.
+
+To use a different log file:
+
+```powershell
+python .\audio_meter.py "rtsps://192.168.1.1:7441/ufgIVAE3C4ZeCNQy?enableSrtp" --log-file C:\Temp\audio_levels.log
+```
+
+To change retention:
+
+```powershell
+python .\audio_meter.py "rtsps://192.168.1.1:7441/ufgIVAE3C4ZeCNQy?enableSrtp" --log-retention-days 14
+```
+
 Stop with `Ctrl+C`.
